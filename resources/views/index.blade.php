@@ -198,7 +198,7 @@
 				</div>
 			</div>
 			<div class="d-flex justify-content-center">
-				<img class="p-2" src="{{ asset('images/KKN.png') }}" alt="KKN" width="20%">
+				<img src="{{ asset('images/KKN.png') }}" alt="KKN" width="20%">
 				<img src="{{ asset('images/Resik.png') }}" alt="Resik" width="20%">
 				<img src="{{ asset('images/Nastari.png') }}" alt="Nastari" width="20%">
 				<img src="{{ asset('images/Pemerintah Desa.png') }}" alt="Desa Cicadas" width="20%">
