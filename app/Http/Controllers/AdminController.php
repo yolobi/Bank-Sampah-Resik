@@ -111,7 +111,7 @@ class AdminController extends Controller
         
         $record_admin = DB::table('records_admin')->where('name', $user->first()->name);
         
-        if(!$record_admin->first()){
+        if(!$record_admin->first() || $record_admin->first()->tanggal != date("Y/m/d")){
             RecordAdmin::create([
                 'name' => $user->first()->name,
                 'tanggal' => date("Y/m/d"),
