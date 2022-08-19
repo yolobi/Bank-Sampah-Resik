@@ -32,7 +32,7 @@ class AdminController extends Controller
             'berat' => 'required',
             'debet' => 'required',
         ]);
-        $user = DB::table('users')->where('name', $request->name)->first();
+        $user = DB::table('users')->where(strtolower('name'), strtolower($request->name))->first();
         if(!$user){
             return redirect()->back();
         }
@@ -51,9 +51,10 @@ class AdminController extends Controller
         ]);
         // $record_admin = DB::table('records_admin')->where('name', $request->name)->first();
         
-        $record_admin = DB::table('records_admin')->where('name', $request->name);
-        
-        if(!$record_admin->first() || $record_admin->first()->tanggal != date("Y/m/d")){
+        $record_admin = DB::table('records_admin')->where('name', $request->name)->orderBy('tanggal', 'desc');
+        // dd($record_admin->first());
+        if(!$record_admin->first() || $record_admin->first()->tanggal != date("Y-m-d")){
+            // dd($record_admin->first()->tanggal, date("Y/m/d"));
             RecordAdmin::create([
                 'name' => $user->name,
                 'tanggal' => $request->tanggal,
@@ -139,5 +140,14 @@ class AdminController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function editHarga(){
+        $sampah = DB::table('jenis_sampah')->paginate(10);
+        return view('admin.edit-harga', compact('sampah'));
+    }
+
+    public function postEditHarga(Request $request){
+        dd($request->all());
     }
 }

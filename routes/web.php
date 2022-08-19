@@ -69,5 +69,7 @@ Route::group(['middleware' => ['auth', 'verified']], function (){
         Route::get('request-penarikan', [AdminController::class, 'requestPenarikan']);
         Route::get('penarikan-setuju/{id}', [AdminController::class, 'penarikanSetuju'])->name('penarikan-setuju');
         Route::get('penarikan-tolak/{id}', [AdminController::class, 'penarikanTolak'])->name('penarikan-tolak');
+        Route::get('edit-harga', [AdminController::class, 'editHarga']);
+        Route::post('edit-harga', [AdminController::class, 'postEditHarga'])->name('post-edit-harga');
     });
 });

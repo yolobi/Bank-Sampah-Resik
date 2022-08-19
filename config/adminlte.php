@@ -272,6 +272,12 @@ return [
             'icon' => 'fas fa-fw fa-dollar-sign',
             'can'  => ['isAdmin'],
         ],
+        [
+            'text' => 'Edit Harga Barang',
+            'url'  => 'admin/edit-harga',
+            'icon' => 'fas fa-fw fa-dollar-sign',
+            'can'  => ['isAdmin'],
+        ],
         ['header' => 'BANK SAMPAH'],
         [
             'text' => 'Buku Tabungan',
