@@ -63,6 +63,10 @@ class UserController extends Controller
             'jumlah' => 'required'
         ]);
         $user = Auth::user();
+        if($request->jumlah > $user->saldo){
+            return back()->with('message', 'Saldo Anda tidak mencukupi!');
+        }
+        
         ModelsRequest::create([
             'name' => $user->name,
             'tanggal' => date("Y/m/d"),

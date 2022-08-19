@@ -4,6 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MainController;
+use App\Listeners\LogVerifiedUser;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Auth::routes(['verify' => true]);
     //AUTH
     Route::get('/logout', [AuthController::class, 'logout'])->name('signout');
     Route::get('/login', [AuthController::class, 'login_index'])->name('login');
@@ -29,8 +33,23 @@ use Illuminate\Support\Facades\Route;
     Route::get('/about', [MainController::class, 'about']);
     Route::get('/contact', [MainController::class, 'contact']);
 
+    Route::get('/email/verify', [AuthController::class, 'verifEmail'])->middleware('auth')->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request){
+        $request->fulfill();
+
+        return redirect('/dashboard');
+
+    })->middleware(['auth', 'signed'])->name('verification.verify');
+    Route::get('/email/verification-notification', function(Request $request){
+        $request->user()->sendEmailVerificationNotification();
+        // dd($request->user());
+
+        return back()->with('message', 'Link verifikasi berhasil dikirimkan.');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 //USER
-Route::group(['middleware' => 'auth'], function (){
+Route::group(['middleware' => ['auth', 'verified']], function (){
     Route::get('/dashboard', [MainController::class, 'dashboard'])->name('dashboard');
     Route::prefix('/user')->group(function(){
         Route::get('/buku-tabungan', [UserController::class, 'buku_tabungan']);

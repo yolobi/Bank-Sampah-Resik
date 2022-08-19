@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -28,6 +30,13 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('isAdmin', function(User $user){
             return $user->id === 6;
+        });
+
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)
+                ->subject('Verifikasi Alamat Email')
+                ->line('Klik tombol dibawah ini untuk verifikasi alamat email Anda.')
+                ->action('Verifikasi Alamat Email', $url);
         });
     }
 }

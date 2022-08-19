@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -58,9 +59,14 @@ class AuthController extends Controller
 
         $validated['password'] = Hash::make($validated['password']);
 
-        User::create($validated);
+        $user = User::create($validated);
 
         $request->session()->flash('success', 'Registrasi Akun Berhasil');
+        event(new Registered($user));
         return redirect('/login');
+    }
+
+    public function verifEmail(){
+        return view('auth.verify-email');
     }
 }

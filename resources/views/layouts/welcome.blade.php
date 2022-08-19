@@ -21,6 +21,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:300,300i,400,400i,500,600i,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
 	
+	<link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="{{ URL::asset('css/animate.css') }}">`
 	<!-- Icomoon Icon Fonts-->
