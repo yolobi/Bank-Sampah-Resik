@@ -198,11 +198,11 @@
 				</div>
 			</div>
 			<div class="d-flex justify-content-center">
-				<img src="{{ asset('images/KKN.png') }}" alt="KKN" width="18%">
-				<img src="{{ asset('images/Resik.png') }}" alt="Resik" width="18%">
-				<img src="{{ asset('images/Nastari.png') }}" alt="Nastari" width="18%">
-				<img src="{{ asset('images/Pemerintah Desa.png') }}" alt="Desa Cicadas" width="18%">
-				<img src="{{ asset('images/Aqua.png') }}" alt="Aqua" width="18%">
+				<img src="{{ asset('images/KKN.png') }}" alt="KKN" width="19.5%">
+				<img src="{{ asset('images/Resik.png') }}" alt="Resik" width="19.5%">
+				<img src="{{ asset('images/Nastari.png') }}" alt="Nastari" width="19.5%">
+				<img src="{{ asset('images/Pemerintah Desa.png') }}" alt="Desa Cicadas" width="19.5%">
+				<img src="{{ asset('images/Aqua.png') }}" alt="Aqua" width="19.5%">
 			</div>
 		</div>
 	</footer>
