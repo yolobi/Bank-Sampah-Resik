@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('isAdmin', function(User $user){
-            return $user->id === 6;
+            return $user->id === 1;
         });
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
